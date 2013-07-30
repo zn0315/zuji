@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.stage.*?>
+<?import javafx.scene.image.*?>
+<?import layouttests.migfxml.sample1.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.*?>
+
+<GridPane fx:id="rootPane" fx:controller="com.zuji.util.examPaper.ImageViewerController"
+        styleClass="main-panel"
+        alignment="center"
+        vgap="10" hgap="10"
+        xmlns:fx="http://javafx.com/fxml">
+	<padding>
+		<Insets top="10" right="10" bottom="10" left="10"></Insets>
+	</padding>
+    <fx:script>
+    	function openFile(event) {
+   /* 
+    		var fc = new Packages.javafx.stage.FileChooser();
+    		var fileName = fc.showOpenDialog(null)
+    		java.lang.System.out.println("file name is " + fileName);
+    	//	myImage = fileName;
+    		var image = new Packages.javafx.scene.image.Image("file:///"+fileName);
+    		imageView.setImage(image);
+    	*/
+    	}
+    </fx:script>
+	<ScrollPane GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="3">
+	    <ImageView fx:id="imageView">
+		</ImageView>
+	</ScrollPane>
+	<Label text="擦除"
+			GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+	<Slider fx:id="slider" min="0" max="255" value="10"
+		prefWidth="800"
+		showTickLabels="true" majorTickUnit="25" showTickMarks="true"
+			GridPane.rowIndex="1" GridPane.columnIndex="1">
+			<fx:script>
+		//		slider.valueProperty().addListener(new Packages.com.zuji.javafxtest.HelloController());
+			</fx:script>
+	</Slider>
+	<Label fx:id="eraseValue"
+			GridPane.rowIndex="1" GridPane.columnIndex="2"
+			text="$slider.value"/>
+	<HBox
+			GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="3"
+			GridPane.halignment="RIGHT"
+			spacing="20"
+		>
+		    <Button text="open" onAction="openFile(event);" />
+		    <Button text="save" onAction="openFile(event);" />
+	</HBox>
+
+</GridPane >
