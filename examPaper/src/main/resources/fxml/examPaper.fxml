@@ -21,18 +21,20 @@
 	</padding>
     <fx:script>
     	function openFile(event) {
-   /* 
     		var fc = new Packages.javafx.stage.FileChooser();
     		var fileName = fc.showOpenDialog(null)
     		java.lang.System.out.println("file name is " + fileName);
-    	//	myImage = fileName;
+    		myImage = fileName;
     		var image = new Packages.javafx.scene.image.Image("file:///"+fileName);
     		imageView.setImage(image);
-    	*/
     	}
     </fx:script>
-	<ScrollPane GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="3">
-	    <ImageView fx:id="imageView">
+	<ScrollPane
+		prefViewportHeight="768" 
+		GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="3">
+	    <ImageView fx:id="imageView"
+	    	fitWidth="1024" 
+	    >
 		</ImageView>
 	</ScrollPane>
 	<Label text="擦除"
@@ -47,7 +49,8 @@
 	</Slider>
 	<Label fx:id="eraseValue"
 			GridPane.rowIndex="1" GridPane.columnIndex="2"
-			text="$slider.value"/>
+			text="${slider.value}"
+	/>
 	<HBox
 			GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="3"
 			GridPane.halignment="RIGHT"
