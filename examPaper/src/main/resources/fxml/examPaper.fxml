@@ -24,8 +24,10 @@
     		var fc = new Packages.javafx.stage.FileChooser();
     		var fileName = fc.showOpenDialog(null)
     		java.lang.System.out.println("file name is " + fileName);
-    		myImage = fileName;
-    		var image = new Packages.javafx.scene.image.Image("file:///"+fileName);
+    		var engine = com.zuji.util.examPaper.ImageEngine.getInstance()
+    		 
+    		engine.setImage(fileName);
+    		var image = engine.erase(10);
     		imageView.setImage(image);
     	}
     </fx:script>
