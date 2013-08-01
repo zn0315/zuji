@@ -22,6 +22,7 @@
     <fx:script>
     	function openFile(event) {
     		var fc = new Packages.javafx.stage.FileChooser();
+    		fc.setInitialDirectory(new Packages.java.io.File("c:/tmp/8"));
     		var fileName = fc.showOpenDialog(null)
     		java.lang.System.out.println("file name is " + fileName);
     		var engine = com.zuji.util.examPaper.ImageEngine.getInstance()
@@ -46,7 +47,7 @@
 		showTickLabels="true" majorTickUnit="25" showTickMarks="true"
 			GridPane.rowIndex="1" GridPane.columnIndex="1">
 			<fx:script>
-		//		slider.valueProperty().addListener(new Packages.com.zuji.javafxtest.HelloController());
+				slider.valueProperty().addListener(new Packages.com.zuji.javafxtest.HelloController());
 			</fx:script>
 	</Slider>
 	<Label fx:id="eraseValue"
