@@ -47,4 +47,8 @@ public class ImageEngine {
    	   	return SwingFXUtils.toFXImage(modifiedImage, null); // don't use null if have performance issue
    	   	//return SwingFXUtils.toFXImage(originalImage, null); // don't use null if have performance issue
 	}
+	
+	public BufferedImage getOriginalImage() {
+		return originalImage;
+	}
 }

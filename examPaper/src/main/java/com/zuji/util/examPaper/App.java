@@ -1,9 +1,11 @@
 package com.zuji.util.examPaper;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 import org.slf4j.Logger;
@@ -34,7 +36,7 @@ public class App extends Application {
         log.debug("Showing JFX scene");
         Scene scene = new Scene(rootNode, 1024, 768);
         scene.getStylesheets().add("/styles/styles.css");
-
+        
         stage.setTitle("examPaper");
         stage.setScene(scene);
         stage.show();

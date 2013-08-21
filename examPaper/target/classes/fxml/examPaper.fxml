@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?language javascript?>
 <?import java.lang.*?>
+<?import javax.imageio.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.stage.*?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Label?>
 <?import javafx.geometry.*?>
+<?import javafx.embed.swing.*?>
 
 <GridPane fx:id="rootPane" fx:controller="com.zuji.util.examPaper.ImageViewerController"
         styleClass="main-panel"
@@ -22,11 +24,22 @@
     <fx:script>
     	function openFile(event) {
     		var fc = new Packages.javafx.stage.FileChooser();
+    		fc.setInitialDirectory(new Packages.java.io.File("c:/tmp/8"));
     		var fileName = fc.showOpenDialog(null)
     		java.lang.System.out.println("file name is " + fileName);
-    		myImage = fileName;
-    		var image = new Packages.javafx.scene.image.Image("file:///"+fileName);
+    		var engine = com.zuji.util.examPaper.ImageEngine.getInstance()
+    		 
+    		engine.setImage(fileName);
+    		var image = engine.erase(10);
     		imageView.setImage(image);
+    	}
+    	function saveFile(event) {
+    		var fc = new Packages.javafx.stage.FileChooser();
+    		fc.setInitialDirectory(new Packages.java.io.File("c:/tmp/8"));
+    		var fileName = fc.showSaveDialog(null)
+    		java.lang.System.out.println("file name is " + fileName);
+    		var image = Packages.javafx.embed.swing.SwingFXUtils.fromFXImage(imageView.getImage(),null);
+			Packages.javax.imageio.ImageIO.write(image,"jpeg",fileName);
     	}
     </fx:script>
 	<ScrollPane
@@ -43,9 +56,6 @@
 		prefWidth="800"
 		showTickLabels="true" majorTickUnit="25" showTickMarks="true"
 			GridPane.rowIndex="1" GridPane.columnIndex="1">
-			<fx:script>
-		//		slider.valueProperty().addListener(new Packages.com.zuji.javafxtest.HelloController());
-			</fx:script>
 	</Slider>
 	<Label fx:id="eraseValue"
 			GridPane.rowIndex="1" GridPane.columnIndex="2"
@@ -57,7 +67,7 @@
 			spacing="20"
 		>
 		    <Button text="open" onAction="openFile(event);" />
-		    <Button text="save" onAction="openFile(event);" />
+		    <Button text="save" onAction="saveFile(event);" />
 	</HBox>
 
 </GridPane >
