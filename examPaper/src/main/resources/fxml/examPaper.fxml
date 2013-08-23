@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?language javascript?>
 <?import java.lang.*?>
+<?import java.awt.image.ColorConvertOp?>
 <?import javax.imageio.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -23,8 +24,10 @@
 	</padding>
     <fx:script>
     	function openFile(event) {
+    		var conf = new Packages.com.zuji.util.examPaper.Configuration();
+    		var path = conf.getDir();
     		var fc = new Packages.javafx.stage.FileChooser();
-    		fc.setInitialDirectory(new Packages.java.io.File("c:/tmp/8"));
+    		fc.setInitialDirectory(new Packages.java.io.File(path));
     		var fileName = fc.showOpenDialog(null)
     		java.lang.System.out.println("file name is " + fileName);
     		var engine = com.zuji.util.examPaper.ImageEngine.getInstance()
@@ -32,14 +35,20 @@
     		engine.setImage(fileName);
     		var image = engine.erase(10);
     		imageView.setImage(image);
+			conf.setDir(fileName.getParentFile())
     	}
     	function saveFile(event) {
     		var fc = new Packages.javafx.stage.FileChooser();
-    		fc.setInitialDirectory(new Packages.java.io.File("c:/tmp/8"));
+    		var conf = new Packages.com.zuji.util.examPaper.Configuration();
+    		var path = conf.getDir();
+    		fc.setInitialDirectory(new Packages.java.io.File(path));
     		var fileName = fc.showSaveDialog(null)
     		java.lang.System.out.println("file name is " + fileName);
     		var image = Packages.javafx.embed.swing.SwingFXUtils.fromFXImage(imageView.getImage(),null);
-			Packages.javax.imageio.ImageIO.write(image,"jpeg",fileName);
+    		var convertedImg = new Packages.java.awt.image.BufferedImage(image.getWidth(), image.getHeight(), Packages.java.awt.image.BufferedImage.TYPE_INT_RGB);
+     		convertedImg.getGraphics().drawImage(image, 0, 0, null);
+			Packages.javax.imageio.ImageIO.write(convertedImg,"JPG",fileName);
+			conf.setDir(fileName.getParentFile())
     	}
     </fx:script>
 	<ScrollPane
